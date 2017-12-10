@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
-import { toggleTimer, updateCurrentLED, onUpdate, onFocusing, onBreak, onBreakComplete } from '../actions/focusTimer';
+import { toggleTimer, onUpdate, onBreak, onBreakComplete } from '../actions/focusTimer';
 import Focus from '../components/Focus';
 
 const mapStateToProps = (state) => {
   return {
-    numLights: state.numLights,
-    interval: state.interval,
-    focus: state.focus,
-    breaky: state.breaky,
-    currentLED: state.currentLED
+    numLights: state.focus.numLights,
+    interval: state.focus.interval,
+    focus: state.focus.focus,
+    rest: state.focus.rest,
   };
 };
 
@@ -17,14 +16,8 @@ const mapDispatchToProps = (dispatch) => {
     onButtonClick: () => {
       dispatch(toggleTimer());
     },
-    onLEDIlluminate: () => {
-      dispatch(updateCurrentLED());
-    },
     handleChange: (partial) => {
       dispatch(onUpdate(partial));
-    },
-    updateFocusingState: () => {
-      dispatch(onFocusing());
     },
     onBreakTime: () => {
       dispatch(onBreak());

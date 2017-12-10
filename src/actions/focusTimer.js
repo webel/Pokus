@@ -8,7 +8,7 @@ export const CURRENT_LED = 'CURRENT_LED';
 export const LIGHT_PLACEMENT = 'LIGHT_PLACEMENT';
 export const UPDATE_TIMER = 'UPDATE_TIMER';
 export const BREAK_TIME = 'BREAK_TIME';
-export const BREAK_TIME_OVER = 'BREAK_TIME_OVER';
+export const FOCUS_TIME = 'FOCUS_TIME';
 
 
 /*
@@ -28,39 +28,14 @@ export const onUpdate = (partial) => {
 	};
 };
 
-export const updateCurrentLED = () => {
-	return {
-		type: 'CURRENT_LED'
-	};
-};
-
-export const onFocusing = () => {
-	return {
-		type: 'CURRENT_FOCUSING'
-	};
-};
-
 export const onBreak = () => {
 	return {
-		type: 'BREAK_TIME'
+		type: 'BREAK_TIME',
 	};
 };
 
 export const onBreakComplete = () => {
 	return {
-		type: 'BREAK_TIME_OVER'
+		type: 'FOCUS_TIME',
 	};
 };
-
-//export const calculateLightPlacement = (numLights) => {
-//	return {
-//		type: 'LIGHT_PLACEMENT', 
-//		numLights
-//	};
-//};//
-
-//export const updateTimerInterval = (interval) => {
-//	return {
-//		type: 'UPDATE_TIMER',
-//		interval
-//	};

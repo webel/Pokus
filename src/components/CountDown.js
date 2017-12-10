@@ -29,9 +29,8 @@ class CountdownTimer extends React.Component {
     super(props);
     this.state = {
       timeRemaining: this.props.initialTimeRemaining * 60 * 1000,
-      nextCallback: this.props.initialTimeRemaining - this.props.intervalCallback,
       timeoutId: false,
-      prevTime: false
+      prevTime: false,
     }
     this.tick = this.tick.bind(this);
     this.getFormattedTime = this.getFormattedTime.bind(this);
@@ -41,7 +40,7 @@ class CountdownTimer extends React.Component {
 
   static propTypes = {
     focus: PropTypes.bool,
-    breaky: PropTypes.bool,
+    rest: PropTypes.bool,
     initialTimeRemaining: PropTypes.number.isRequired,
     interval: PropTypes.number,
     formatFunc: PropTypes.func,
@@ -82,6 +81,9 @@ class CountdownTimer extends React.Component {
   }
 
   tick() {
+    if (!this.props.focus & !this.props.rest) {
+      return;
+    }
     let currentTime = Date.now();
     let dt = this.state.prevTime ? (currentTime - this.state.prevTime) : 0;
     let interval = this.props.interval;
@@ -138,15 +140,14 @@ class CountdownTimer extends React.Component {
     return (
       <div style={{textAlign: 'center'}}>
           <input 
-            style={[styles.input, this.props.focus ? styles.showTime : styles.enterInput]} type="text"
-            value={this.props.focus ? timeRemaining : this.props.initialTimeRemaining}
+            style={[styles.input, (this.props.focus || this.props.rest)? styles.showTime : styles.enterInput]} type="text"
+            value={(this.props.focus || this.props.rest) ? timeRemaining : this.props.initialTimeRemaining}
             onChange={this.props.handleChange}
-            disabled={this.props.focus}
+            disabled={this.props.focus ^ this.props.rest}
           />
-        {this.props.focus ? '' : <h4 style={{display: "inline"}}> minute(s) 
-          {this.props.breaky ?  ' break time' :  ' focusing time'} </h4>}
-        {this.props.breaky &&  ' break time'}
-        {(this.state.timeRemaining < 5 && this.props.focus)? <h4> Take a break! </h4> : ''}
+        {(this.props.focus ^ this.props.rest) ? '' : <h4 style={{display: "inline"}}> minute(s) 
+          {this.props.rest ?  ' rest time' :  ' focusing time'} </h4>}
+        {(this.state.timeRemaining < 5 && this.props.focus)? <h4> Take a rest! </h4> : ''}
       </div>
     );
   }

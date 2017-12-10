@@ -11,45 +11,45 @@ const Focus = (props) => {
 		<div style={styles.encapsulator} >
 			<div style={styles.lens}>
 				<Button onClick={() => props.onButtonClick()} />
-				<LightLayout 
-					breaky={props.focus.breaky}
-					currentLED={props.focus.currentLED} 
-				numLights={props.focus.numLights} 
-					interval={props.focus.interval} 
-					on={props.focus.focus}
-				/> 
+				{props.rest &&
+					<LightLayout
+						rest={props.rest}
+						numLights={props.numLights}
+						interval={parseFloat(props.interval)}
+						on={props.focus || props.rest}
+					/>
+				}
+				{props.focus &&
+					<LightLayout
+						rest={props.rest}
+						numLights={props.numLights}
+						interval={parseFloat(props.interval)}
+						on={props.focus}
+					/>
+				}
 			</div>
 				<div style={styles.shadow}> </div>     
 		</div>
-		{props.focus.breaky ?
+		{props.rest ?
 		<CountdownTimer 
 			handleChange={(event) => props.handleChange(event.target.value)} 
-			initialTimeRemaining={props.focus.interval/5}
-			intervalCallback={props.focus.lightDelay}
-			completeCallback={() => props.onButtonClick()}
-			focus={props.focus.focus}
-			breaky={props.focus.breaky}
+			initialTimeRemaining={props.interval/5}
+			completeCallback={() => props.onBreakComplete()}
+			focus={props.focus}
+			rest={props.rest}
 		/> :
 		<CountdownTimer 
 			handleChange={(event) => props.handleChange(event.target.value)} 
-			initialTimeRemaining={props.focus.interval}
+			initialTimeRemaining={props.interval}
 			completeCallback={() => props.onBreakTime()}
-			intervalCallback={props.focus.lightDelay}
-			focus={props.focus.focus}
-			restart={() => props.onButtonClick()}
-			breaky={props.focus.breaky}
-
+			focus={props.focus}
+			rest={props.rest}
 		/> 
 		}
 	</div> 
 	);
 };
 
-let bounce = Radium.keyframes({
-	'0%, 20%, 50%, 80%, 100%': { transform: 'translateY(0) rotate(135deg)'},
-	'40%': { transform: 'translateY(-20px) rotate(135deg)'},
-	'60%': { transform: 'translateY(-12px) rotate(135deg)'}
-});
 
 let fade = Radium.keyframes({
 	'0%': {
@@ -99,33 +99,18 @@ const styles = {
 		background: 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAS0lEQVQYV42PMQ4AIAgDyy7/fyjuGogYFExkgnKBlrjxQCjpAm4cJespgg5V8Abv5T0b+HoXdQIwKk9u0uHDY0qwBIW/wJT6dVH1CZzOJAuMdT5xAAAAAElFTkSuQmCC) repeat',
 		boxShadow: '0 3px 0 rgba(0, 0, 0, .4)'
 	},
-
-	arrow: {
-		width: '25px',
-		height: '25px',
-		position: 'absolute',
-		bottom: '-32%',
-		left: '45%',
-		borderTop: '5px solid black',
-		borderRight: '5px solid black',
-		':hover': {
-			cursor: 'pointer'
-		},
-		animation: 'x infinite 3s',
-		animationName: bounce
-	}
-
-
 };
 
 Focus.propTypes = {
 	onButtonClick: PropTypes.func,
-	onLEDIlluminate: PropTypes.func,
-	focus: PropTypes.object,
+	handleChange: PropTypes.func,
+	onBreakTime: PropTypes.func,
+	onBreakComplete: PropTypes.func,
+	numLights: PropTypes.number,
+	interval: PropTypes.number,
+	rest: PropTypes.bool,
+	focus: PropTypes.bool,
 	isMobile: PropTypes.bool,
-	'focus.numLights': PropTypes.number,
-	'focus.interval': PropTypes.number
-
 };
 
 export default Radium(Focus);

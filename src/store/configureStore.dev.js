@@ -3,13 +3,14 @@
 //With Redux, the actual stores are in /reducers.
 
 import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import focusApp from '../reducers';
 
 export default function configureStore(initialState) {
   let store = createStore(
     focusApp, 
     initialState, 
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeWithDevTools(),
   );
 
   if (module.hot) {
