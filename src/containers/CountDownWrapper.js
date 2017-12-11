@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import { 
   onUpdate, 
   onTimeout
-} from '../actions/focusTimer';
-import CountdownTimer from '../components/CountDown';
+} from 'actions/focusTimer';
+import CountdownTimer from 'components/CountDown';
 
 const mapStateToProps = (state) => {
   let interval = null

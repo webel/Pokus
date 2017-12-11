@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { toggleTimer } from '../actions/focusTimer';
-import PokusComp from '../components/Pokus';
+import { toggleTimer } from 'actions/focusTimer';
+import PokusComp from 'components/Pokus';
 
 const mapStateToProps = (state) => {
   return {

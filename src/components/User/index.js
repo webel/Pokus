@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import UserBackground from './UserBackground';
-import UserIndicator from './UserIndicator';
+import UserBackground from './Background';
+import UserIndicator from './Indicator';
 import Radium from 'radium';
 
 const User = (props) =>

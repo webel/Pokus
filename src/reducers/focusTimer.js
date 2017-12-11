@@ -1,4 +1,4 @@
-import {TOGGLE_TIMER, UPDATE_TIMER, SWITCH} from '../actions/focusTimer';
+import {TOGGLE_TIMER, UPDATE_TIMER, SWITCH} from 'actions/focusTimer';
 
 const initialState = {
   interval: 5,

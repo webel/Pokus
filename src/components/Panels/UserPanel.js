@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import User from './User';
-import Header from './Header';
+import User from 'components/User';
+import Header from 'components/Header';
 import Radium from 'radium';
 
 class UserPanel extends Component {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
-import Timer from '../containers/CountDownWrapper';
-import Pokus from '../containers/PokusWrapper';
+import Timer from 'containers/CountDownWrapper';
+import Pokus from 'containers/PokusWrapper';
 
 const FocusPanel = () => {
 	return (

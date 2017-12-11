@@ -4,7 +4,7 @@
 
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import focusApp from '../reducers';
+import focusApp from 'reducers';
 
 export default function configureStore(initialState) {
   let store = createStore(

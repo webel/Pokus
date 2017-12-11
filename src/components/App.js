@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import FocusPanel from '../components/FocusPanel';
-import Header from '../components/Header';
-import UserPanel from '../components/UserPanel';
-import Styles from '../components/Styles';
+import FocusPanel from 'components/Panels/FocusPanel';
+import UserPanel from 'components/Panels/UserPanel';
+import Header from 'components/Header';
+import Styles from 'components/Styles';
 import Radium from 'radium';
 
 
