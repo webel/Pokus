@@ -139,15 +139,16 @@ class CountdownTimer extends React.Component {
 
     return (
       <div style={{textAlign: 'center'}}>
-          <input 
-            style={[styles.input, (this.props.focus || this.props.rest)? styles.showTime : styles.enterInput]} type="text"
+          <input
+            type='text'
+            style={[styles.input, (this.props.focus || this.props.rest)? styles.showTime : styles.enterInput]}
             value={(this.props.focus || this.props.rest) ? timeRemaining : this.props.initialTimeRemaining}
             onChange={this.props.handleChange}
             disabled={this.props.focus ^ this.props.rest}
           />
         {(this.props.focus ^ this.props.rest) ? '' : <h4 style={{display: "inline"}}> minute(s) 
           {this.props.rest ?  ' rest time' :  ' focusing time'} </h4>}
-        {(this.state.timeRemaining < 5 && this.props.focus)? <h4> Take a rest! </h4> : ''}
+        {(this.state.timeRemaining < 50 && this.props.focus)? <h4> Take a rest! </h4> : ''}
       </div>
     );
   }
@@ -156,8 +157,9 @@ class CountdownTimer extends React.Component {
 
 let styles = {
   input: {
-    apperance: "none",
+    MozAppearance: "none",
     WebkitAppearance: "none",
+    margin: 0,
     background: "none",
     border: "none",
     textAlign: "right",
@@ -165,6 +167,9 @@ let styles = {
     fontSize: "2.5rem",
     ':focus': {
       outline: "none"
+    },
+    ':hover': {
+      color: '#fff999',
     }
   },
   enterInput: {

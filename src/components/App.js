@@ -1,10 +1,44 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import FokusTimer from '../containers/FokusTimer';
+import FocusPanel from '../components/FocusPanel';
 import Header from '../components/Header';
 import UserPanel from '../components/UserPanel';
 import Styles from '../components/Styles';
 import Radium from 'radium';
+
+
+class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			expand: true,
+		};
+		this.expand = this.expand.bind(this);
+	}
+
+	expand() {
+		this.setState({ expand: !this.state.expand });
+	}
+
+	render() {
+		return (
+			<div className="container" >
+				<Styles />
+				<div
+					style={[styles.panel, 
+							 styles.right, 
+							 this.state.expand ? styles.full : styles.half]} 
+					onDoubleClick={() => this.expand()}
+				>
+					<Header title={"Pokus"} />
+					<FocusPanel />
+				</div>
+				<div style={styles.panel}>
+					<UserPanel />
+				</div>
+			</div>
+		);
+	}
+}
 
 
 let backgroundChange = Radium.keyframes({
@@ -22,12 +56,6 @@ let backgroundChange = Radium.keyframes({
 
 });
 
-let bounce = Radium.keyframes({
-	'0%, 20%, 50%, 80%, 100%': { transform: 'translateY(0) rotate(135deg)'},
-	'40%': { transform: 'translateY(-20px) rotate(135deg)'},
-	'60%': { transform: 'translateY(-12px) rotate(135deg)'}
-});
-
 let fadeIn = Radium.keyframes ({
 	'0%': {
         opacity: '0'
@@ -38,11 +66,6 @@ let fadeIn = Radium.keyframes ({
 });
 
 let styles = {
-	// defines colours and styles that might be useful across the three panels
-	accent : {
-		color: '#E9C46A'
-	},
-
 	// Specifies specific styles for the right panel,
 	// in it's current state just the background transition 
 	// animation
@@ -88,76 +111,6 @@ let styles = {
 		maxWidth: '650px',
 		alignSelf: 'center'
 	},
-	arrow: {
-		width: '25px',
-		height: '25px',
-
-		position: 'absolute',
-		bottom: '5%',
-		left: '47%',
-
-		borderTop: '5px solid black',
-		borderRight: '5px solid black',
-
-		':hover': {
-			cursor: 'pointer'
-		},
-
-		animation: 'x infinite 3s',
-		animationName: bounce
-	}
-};
-
-class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			expand: true,
-			isMobile: false
-		};
-		this.expand = this.expand.bind(this);
-		this.checkViewport = this.checkViewport.bind(this);
-	}
-
-	componentDidMount() {
-		this.checkViewport();
-		let timeout = false;
-		window.addEventListener('resize', () => {
-			clearTimeout(timeout);
-			timeout = setTimeout(this.checkViewport, 250);
-		});
-	}
-
-	checkViewport(){
-		if(window.innerWidth > 630){
-			this.setState({isMobile: false});
-		}else{
-			this.setState({isMobile: true});
-		}
-	}
-
-	expand(){
-		this.setState({expand: !this.state.expand});
-	}
-
-	render() {
-		return(
-			<div className="container" >
-				<Styles />
-				<div style={[styles.panel, styles.right, this.state.expand ? styles.full : styles.half]} onDoubleClick={() => this.expand()}>
-					<Header title={"Pokus"} />
-					<FokusTimer isMobile={this.state.isMobile} />
-				</div>
-				<div style={styles.panel}>
-					<UserPanel />
-				</div>
-			</div>
-		);
-	}
-}
-
-App.propTypes = {
-	toTop: PropTypes.bool
 };
 
 export default Radium(App);

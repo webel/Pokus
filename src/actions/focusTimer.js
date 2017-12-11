@@ -3,13 +3,8 @@
 */
 
 export const TOGGLE_TIMER = 'TOGGLE_TIMER';
-export const CURRENT_FOCUSING = 'CURRENT_FOCUSING';
-export const CURRENT_LED = 'CURRENT_LED';
-export const LIGHT_PLACEMENT = 'LIGHT_PLACEMENT';
 export const UPDATE_TIMER = 'UPDATE_TIMER';
-export const BREAK_TIME = 'BREAK_TIME';
-export const FOCUS_TIME = 'FOCUS_TIME';
-
+export const SWITCH = 'SWITCH';
 
 /*
 * Action creators
@@ -28,14 +23,8 @@ export const onUpdate = (partial) => {
 	};
 };
 
-export const onBreak = () => {
+export const onTimeout = () => {
 	return {
-		type: 'BREAK_TIME',
-	};
-};
-
-export const onBreakComplete = () => {
-	return {
-		type: 'FOCUS_TIME',
+		type: 'SWITCH',
 	};
 };

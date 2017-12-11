@@ -1,4 +1,4 @@
-import {TOGGLE_TIMER, UPDATE_TIMER, BREAK_TIME, FOCUS_TIME} from '../actions/focusTimer';
+import {TOGGLE_TIMER, UPDATE_TIMER, SWITCH} from '../actions/focusTimer';
 
 const initialState = {
   interval: 5,
@@ -21,8 +21,7 @@ function focus(state = initialState, action){
         rest: false,
         interval: parseFloat(state.interval)
       }
-    case FOCUS_TIME:
-    case BREAK_TIME:
+    case SWITCH:
       return { ...state,
         focus: !state.focus,
         rest: !state.rest,
