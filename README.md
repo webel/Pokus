@@ -1,9 +1,9 @@
-# [Pokus][1]
+# [Pokus](1)
 **This repository contains a frontend demo for the Pokus accompanying app.**
 
 See Pokus [homepage][1] for a description of *what Pokus is*.
 
-## [Demo][2]
+## [Demo](2)
 See Pokus demo [here][2].
 
 This demo is a simple react app that gives an idea of what the Pokus app connected to several devices would look like when used in an open office enviroment, or really any team enviroment where concentration is valued.
