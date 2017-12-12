@@ -169,7 +169,7 @@ let styles = {
       outline: "none"
     },
     ':hover': {
-      color: '#fff999',
+      color: '#64686F',
     }
   },
   enterInput: {
