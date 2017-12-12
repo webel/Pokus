@@ -1,10 +1,10 @@
-# [Pokus](1)
+# [Pokus](139.59.169.28:8080)
 **This repository contains a frontend demo for the Pokus accompanying app.**
 
-See Pokus [homepage][1] for a description of *what Pokus is*.
+See Pokus [homepage](http://139.59.169.28:8080) for a description of *what Pokus is*.
 
-## [Demo](2)
-See Pokus demo [here][2].
+## [Demo](https://webel.github.io/Pokus)
+See Pokus demo [here](https://webel.github.io/Pokus).
 
 This demo is a simple react app that gives an idea of what the Pokus app connected to several devices would look like when used in an open office enviroment, or really any team enviroment where concentration is valued.
 
@@ -16,6 +16,3 @@ This demo is a simple react app that gives an idea of what the Pokus app connect
 **See user panel** by dubbel-clicking anywhere on the background, the userpanel to the right of the device will become visible. On mobile, simply scroll past the virutal device to see the panel.
 
 **See time left for user** by hovering over a users logo.
-
-[1]:(139.59.169.28:8080)
-[2]:(https://webel.github.io/Pokus)
